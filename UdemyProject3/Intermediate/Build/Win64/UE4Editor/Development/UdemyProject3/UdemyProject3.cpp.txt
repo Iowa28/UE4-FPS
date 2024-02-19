@@ -1,2 +1,0 @@
-C:\Users\naminov\Documents\Unreal Projects\UE4-Tank-Battle\UdemyProject3\Intermediate\Build\Win64\UE4Editor\Development\UdemyProject3\Definitions.UdemyProject3.h
-C:\Users\naminov\Documents\Unreal Projects\UE4-Tank-Battle\UdemyProject3\Source\UdemyProject3\UdemyProject3.h
