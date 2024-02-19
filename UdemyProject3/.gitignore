@@ -72,3 +72,8 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# some idea files
+/.idea/.idea.UdemyProject3/.idea/encodings.xml
+/.idea/.idea.UdemyProject3/.idea/indexLayout.xml
+/.idea/.idea.UdemyProject3/.idea/vcs.xml
