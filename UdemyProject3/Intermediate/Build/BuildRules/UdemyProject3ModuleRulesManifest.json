@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"C:\\Users\\naminov\\Documents\\Unreal Projects\\UE4-FPS\\UdemyProject3\\Source\\UdemyProject3\\UdemyProject3.Build.cs",
+		"C:\\Users\\naminov\\Documents\\Unreal Projects\\UE4-FPS\\UdemyProject3\\Source\\UdemyProject3.Target.cs",
+		"C:\\Users\\naminov\\Documents\\Unreal Projects\\UE4-FPS\\UdemyProject3\\Source\\UdemyProject3Editor.Target.cs"
+	],
+	"EngineVersion": "4.27.2"
+}
