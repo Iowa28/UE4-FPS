@@ -16,7 +16,10 @@ class UDEMYPROJECT3_API UChooseNextWaypoint : public UBTTaskNode
 
 protected:
 	UPROPERTY(EditAnywhere, Category = "Blackborad")
-	struct FBlackboardKeySelector IndexKey;
+	FBlackboardKeySelector IndexKey;
+
+	UPROPERTY(EditAnywhere, Category = "Blackborad")
+	FBlackboardKeySelector WaypointKey;
 
 public:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
