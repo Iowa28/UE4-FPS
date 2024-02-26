@@ -11,10 +11,10 @@ class UDEMYPROJECT3_API AGun : public AActor
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	UPROPERTY(VisibleDefaultsOnly, Category = "Mesh")
 	USkeletalMeshComponent* FP_Gun;
 
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	UPROPERTY(VisibleDefaultsOnly, Category = "Mesh")
 	USceneComponent* FP_MuzzleLocation;
 	
 public:	
@@ -22,8 +22,6 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
-
-	void Fire();
 
 public:
 	UPROPERTY(EditDefaultsOnly, Category = "Projectile")
@@ -39,5 +37,7 @@ public:
 	UAnimInstance* AnimInstance;
 	
 	virtual void Tick(float DeltaTime) override;
+
+	void Fire();
 	
 };

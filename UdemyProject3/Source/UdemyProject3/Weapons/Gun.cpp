@@ -12,7 +12,6 @@ AGun::AGun()
 	PrimaryActorTick.bCanEverTick = true;
 
 	FP_Gun = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FP_Gun"));
-	FP_Gun->SetOnlyOwnerSee(false);
 	FP_Gun->bCastDynamicShadow = false;
 	FP_Gun->CastShadow = false;
 	// FP_Gun->SetupAttachment(Mesh1P, TEXT("GripPoint"));
@@ -58,11 +57,8 @@ void AGun::Fire()
 		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
 	}
 
-	if (FireAnimation != nullptr)
+	if (FireAnimation != nullptr && AnimInstance != nullptr)
 	{
-		if (AnimInstance != nullptr)
-		{
-			AnimInstance->Montage_Play(FireAnimation, 1.f);
-		}
+		AnimInstance->Montage_Play(FireAnimation, 1.f);
 	}
 }
