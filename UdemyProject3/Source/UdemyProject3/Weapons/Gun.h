@@ -32,12 +32,14 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	UAnimMontage* FireAnimation;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
-	UAnimInstance* AnimInstance;
 	
 	virtual void Tick(float DeltaTime) override;
 
 	void Fire();
+
+	void SetAnimInstance(UAnimInstance* AnimationInstance);
+
+private:
+	UAnimInstance* AnimInstance = nullptr;
 	
 };

@@ -5,7 +5,6 @@
 
 #include "BallProjectile.h"
 #include "Kismet/GameplayStatics.h"
-// #include "Animation/AnimInstance.h"
 
 AGun::AGun()
 {
@@ -30,13 +29,10 @@ void AGun::BeginPlay()
 void AGun::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void AGun::Fire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("FIRE"));
-	
 	if (ProjectileClass != nullptr)
 	{
 		const FRotator SpawnRotation = FP_MuzzleLocation->GetComponentRotation();
@@ -61,4 +57,9 @@ void AGun::Fire()
 	{
 		AnimInstance->Montage_Play(FireAnimation, 1.f);
 	}
+}
+
+void AGun::SetAnimInstance(UAnimInstance* AnimationInstance)
+{
+	AnimInstance = AnimationInstance;
 }
