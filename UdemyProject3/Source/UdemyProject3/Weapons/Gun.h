@@ -35,6 +35,7 @@ public:
 	
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintCallable, Category = "Fire")
 	void Fire();
 
 	void SetAnimInstance(UAnimInstance* AnimationInstance);
