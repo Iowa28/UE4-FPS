@@ -37,6 +37,11 @@ void ABaseCharacter::BeginPlay()
 	Gun = GetWorld()->SpawnActor<AGun>(GunBlueprint);
 	Gun->AttachToComponent(ArmsMesh, FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), TEXT("GripPoint"));
 	Gun->SetAnimInstance(ArmsMesh->GetAnimInstance());
+
+	if (InputComponent)
+	{
+		InputComponent->BindAction("Fire", IE_Pressed, this, &ABaseCharacter::PullTrigger);
+	}
 }
 
 void ABaseCharacter::Tick(float DeltaTime)
@@ -47,14 +52,9 @@ void ABaseCharacter::Tick(float DeltaTime)
 void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
-void ABaseCharacter::Fire()
+void ABaseCharacter::PullTrigger()
 {
-	if (Gun)
-	{
-		Gun->Fire();
-	}
+	Gun->Fire();
 }
-
