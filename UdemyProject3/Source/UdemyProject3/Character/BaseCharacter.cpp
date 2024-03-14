@@ -75,5 +75,4 @@ void ABaseCharacter::UnPossessed()
 void ABaseCharacter::PullTrigger()
 {
 	Gun->Fire();
-	// GetMesh()->GetAnimInstance()->Montage_Play(ShootAnimation);
 }

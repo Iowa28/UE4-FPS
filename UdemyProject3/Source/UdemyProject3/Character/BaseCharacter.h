@@ -33,9 +33,6 @@ public:
 	
 	UPROPERTY(VisibleDefaultsOnly, Category = "Setup")
 	AGun* Gun;
-
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
-	// UAnimMontage* ShootAnimation;
 	
 	virtual void Tick(float DeltaTime) override;
 
