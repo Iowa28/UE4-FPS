@@ -36,7 +36,7 @@ void ABaseCharacter::BeginPlay()
 
 	Gun = GetWorld()->SpawnActor<AGun>(GunBlueprint);
 	Gun->AttachToComponent(ArmsMesh, FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), TEXT("GripPoint"));
-	Gun->SetAnimInstance(ArmsMesh->GetAnimInstance());
+	Gun->SetAnimInstance(GetMesh()->GetAnimInstance());
 
 	if (InputComponent)
 	{
@@ -57,4 +57,5 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 void ABaseCharacter::PullTrigger()
 {
 	Gun->Fire();
+	// GetMesh()->GetAnimInstance()->Montage_Play(ShootAnimation);
 }
