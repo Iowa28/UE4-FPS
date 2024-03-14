@@ -31,16 +31,19 @@ public:
 	USoundBase* FireSound;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
-	UAnimMontage* FireAnimation;
+	UAnimMontage* FireAnimationFP;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	UAnimMontage* FireAnimationTP;
 	
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Fire")
 	void Fire();
 
-	void SetAnimInstance(UAnimInstance* AnimationInstance);
+	void SetAnimInstanceFP(UAnimInstance* AnimationInstance);
+	void SetAnimInstanceTP(UAnimInstance* AnimationInstance);
 
 private:
-	UAnimInstance* AnimInstance = nullptr;
-	
+	UAnimInstance* AnimInstanceFP = nullptr;
+	UAnimInstance* AnimInstanceTP = nullptr;
 };

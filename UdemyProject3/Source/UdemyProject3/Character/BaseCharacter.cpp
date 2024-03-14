@@ -35,8 +35,16 @@ void ABaseCharacter::BeginPlay()
 	}
 
 	Gun = GetWorld()->SpawnActor<AGun>(GunBlueprint);
-	Gun->AttachToComponent(ArmsMesh, FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), TEXT("GripPoint"));
-	Gun->SetAnimInstance(GetMesh()->GetAnimInstance());
+	if (IsPlayerControlled())
+	{
+		Gun->AttachToComponent(ArmsMesh, FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), TEXT("GripPoint"));
+	}
+	else
+	{
+		Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), TEXT("GripPoint"));
+	}
+	Gun->SetAnimInstanceFP(ArmsMesh->GetAnimInstance());
+	Gun->SetAnimInstanceTP(GetMesh()->GetAnimInstance());
 
 	if (InputComponent)
 	{
@@ -52,6 +60,16 @@ void ABaseCharacter::Tick(float DeltaTime)
 void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+}
+
+void ABaseCharacter::UnPossessed()
+{
+	Super::UnPossessed();
+
+	if (Gun)
+	{
+		Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), TEXT("GripPoint"));
+	}
 }
 
 void ABaseCharacter::PullTrigger()

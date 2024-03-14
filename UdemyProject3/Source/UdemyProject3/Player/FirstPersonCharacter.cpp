@@ -72,7 +72,7 @@ void AFirstPersonCharacter::BeginPlay()
 	{
 		Gun = GetWorld()->SpawnActor<AGun>(GunClass);
 		Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), TEXT("GripPoint"));
-		Gun->SetAnimInstance(Mesh1P->GetAnimInstance());
+		Gun->SetAnimInstanceTP(Mesh1P->GetAnimInstance());
 		
 		InputComponent->BindAction("Fire", IE_Pressed, Gun, &AGun::Fire);
 	}

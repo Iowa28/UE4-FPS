@@ -53,13 +53,22 @@ void AGun::Fire()
 		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
 	}
 
-	if (FireAnimation && AnimInstance)
+	if (FireAnimationFP && AnimInstanceFP)
 	{
-		AnimInstance->Montage_Play(FireAnimation, 1.f);
+		AnimInstanceFP->Montage_Play(FireAnimationFP, 1.f);
+	}
+	if (FireAnimationTP && AnimInstanceTP)
+	{
+		AnimInstanceTP->Montage_Play(FireAnimationTP, 1.f);
 	}
 }
 
-void AGun::SetAnimInstance(UAnimInstance* AnimationInstance)
+void AGun::SetAnimInstanceFP(UAnimInstance* AnimationInstance)
 {
-	AnimInstance = AnimationInstance;
+	AnimInstanceFP = AnimationInstance;
+}
+
+void AGun::SetAnimInstanceTP(UAnimInstance* AnimationInstance)
+{
+	AnimInstanceTP = AnimationInstance;
 }

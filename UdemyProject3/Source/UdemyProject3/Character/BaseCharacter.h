@@ -41,6 +41,8 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	virtual void UnPossessed() override;
+
 	UFUNCTION(BlueprintCallable, Category = "Fire")
 	void PullTrigger();
 };
