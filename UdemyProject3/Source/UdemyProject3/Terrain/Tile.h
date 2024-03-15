@@ -20,6 +20,6 @@ protected:
 public:	
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION(BlueprintCallable, Category = "KEK")
-	void PlaceActors();
+	UFUNCTION(BlueprintCallable, Category = "Spawn")
+	void PlaceActors(const TSubclassOf<AActor> ClassToSpawn, const int32 MinSpawn, const int32 MaxSpawn);
 };
