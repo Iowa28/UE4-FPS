@@ -13,7 +13,7 @@ void ATile::BeginPlay()
 {
 	Super::BeginPlay();
 	CastSphere(GetActorLocation(), 300);
-	CastSphere(GetActorLocation() + FVector(0, 0, 1000), 300);
+	CastSphere(GetActorLocation() + FVector(1000, 0, 0), 300);
 }
 
 void ATile::Tick(float DeltaTime)
@@ -45,11 +45,11 @@ bool ATile::CastSphere(FVector Location, float Radius)
 		Location,
 		Location,
 		FQuat::Identity,
-		ECC_Camera,
+		ECC_GameTraceChannel2,
 		FCollisionShape::MakeSphere(Radius)
 	);
 
 	FColor Color = HasHit ? FColor::Red : FColor::Green;
-	DrawDebugSphere(GetWorld(), Location, Radius, 16, Color, true, 10000);
+	DrawDebugCapsule(GetWorld(), Location, 0, Radius, FQuat::Identity, Color, true, 10000);
 	return HasHit;
 }
