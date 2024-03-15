@@ -10,7 +10,7 @@
 AUdemyProject3HUD::AUdemyProject3HUD()
 {
 	// Set the crosshair texture
-	static ConstructorHelpers::FObjectFinder<UTexture2D> CrosshairTexObj(TEXT("/Game/Character/Models/FirstPerson/Textures/FirstPersonCrosshair"));
+	static ConstructorHelpers::FObjectFinder<UTexture2D> CrosshairTexObj(TEXT("/Game/Character/Models/FirstPerson/Textures/T_FirstPersonCrosshair"));
 	CrosshairTex = CrosshairTexObj.Object;
 }
 
@@ -29,7 +29,7 @@ void AUdemyProject3HUD::DrawHUD()
 										   (Center.Y + 20.0f));
 
 	// draw the crosshair
-	FCanvasTileItem TileItem( CrosshairDrawPosition, CrosshairTex->Resource, FLinearColor::White);
+	FCanvasTileItem TileItem(CrosshairDrawPosition, CrosshairTex->Resource, FLinearColor::White);
 	TileItem.BlendMode = SE_BLEND_Translucent;
-	Canvas->DrawItem( TileItem );
+	Canvas->DrawItem(TileItem );
 }
