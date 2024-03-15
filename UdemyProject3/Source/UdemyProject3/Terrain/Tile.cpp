@@ -2,6 +2,7 @@
 
 
 #include "Tile.h"
+#include "DrawDebugHelpers.h"
 
 ATile::ATile()
 {
@@ -11,6 +12,8 @@ ATile::ATile()
 void ATile::BeginPlay()
 {
 	Super::BeginPlay();
+	CastSphere(GetActorLocation(), 300);
+	CastSphere(GetActorLocation() + FVector(0, 0, 1000), 300);
 }
 
 void ATile::Tick(float DeltaTime)
@@ -32,4 +35,21 @@ void ATile::PlaceActors(const TSubclassOf<AActor> ClassToSpawn, const int32 MinS
 		SpawnedActor->SetActorRelativeLocation(RandomPoint);
 		SpawnedActor->AttachToActor(this, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
 	}
+}
+
+bool ATile::CastSphere(FVector Location, float Radius)
+{
+	FHitResult HitResult;
+	bool HasHit = GetWorld()->SweepSingleByChannel(
+		HitResult,
+		Location,
+		Location,
+		FQuat::Identity,
+		ECC_Camera,
+		FCollisionShape::MakeSphere(Radius)
+	);
+
+	FColor Color = HasHit ? FColor::Red : FColor::Green;
+	DrawDebugSphere(GetWorld(), Location, Radius, 16, Color, true, 10000);
+	return HasHit;
 }
