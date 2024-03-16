@@ -37,6 +37,11 @@ void ATile::PlaceActors(const TSubclassOf<AActor> ClassToSpawn, const int32 MinS
 	}
 }
 
+void ATile::SetPool(UActorPool* ActorPool)
+{
+	Pool = ActorPool;
+}
+
 bool ATile::FindEmptyLocation(FVector& OutLocation, const FBox& Bounds, const float Radius)
 {
 	constexpr int32 MaxAttempts = 100;
