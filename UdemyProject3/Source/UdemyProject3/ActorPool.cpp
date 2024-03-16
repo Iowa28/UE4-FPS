@@ -10,15 +10,15 @@ UActorPool::UActorPool()
 
 AActor* UActorPool::Checkout()
 {
-	return nullptr;
+	return Actor;
 }
 
 void UActorPool::Return(AActor* ActorToReturn)
 {
-	
+	Actor = ActorToReturn;
 }
 
 void UActorPool::Add(AActor* ActorToAdd)
 {
-	
+	Return(ActorToAdd);
 }

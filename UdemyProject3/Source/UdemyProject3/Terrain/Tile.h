@@ -19,9 +19,9 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-public:	
-	virtual void Tick(float DeltaTime) override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
+public:	
 	UFUNCTION(BlueprintCallable, Category = "Spawn")
 	void PlaceActors(const TSubclassOf<AActor> ClassToSpawn, const int32 MinSpawn, const int32 MaxSpawn, float Radius = 200, float MinScale = 1, float MaxScale = 1);
 
@@ -30,6 +30,10 @@ public:
 
 private:
 	UActorPool* Pool = nullptr;
+
+	AActor* NavMeshBoundsVolume = nullptr;
+
+	void PositionNavMeshBoundsVolume();
 	
 	bool FindEmptyLocation(FVector& OutLocation, const FBox& Bounds, float Radius);
 

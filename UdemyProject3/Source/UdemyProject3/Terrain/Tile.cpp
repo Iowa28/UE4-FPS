@@ -2,10 +2,11 @@
 
 
 #include "Tile.h"
+#include "UdemyProject3/ActorPool.h"
 
 ATile::ATile()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 }
 
 void ATile::BeginPlay()
@@ -13,9 +14,11 @@ void ATile::BeginPlay()
 	Super::BeginPlay();
 }
 
-void ATile::Tick(float DeltaTime)
+void ATile::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	Super::Tick(DeltaTime);
+	Super::EndPlay(EndPlayReason);
+
+	Pool->Return(NavMeshBoundsVolume);
 }
 
 void ATile::PlaceActors(const TSubclassOf<AActor> ClassToSpawn, const int32 MinSpawn, const int32 MaxSpawn, const float Radius, float MinScale, float MaxScale)
@@ -40,6 +43,14 @@ void ATile::PlaceActors(const TSubclassOf<AActor> ClassToSpawn, const int32 MinS
 void ATile::SetPool(UActorPool* ActorPool)
 {
 	Pool = ActorPool;
+
+	PositionNavMeshBoundsVolume();
+}
+
+void ATile::PositionNavMeshBoundsVolume()
+{
+	NavMeshBoundsVolume = Pool->Checkout();
+	NavMeshBoundsVolume->SetActorLocation(GetActorLocation());
 }
 
 bool ATile::FindEmptyLocation(FVector& OutLocation, const FBox& Bounds, const float Radius)
