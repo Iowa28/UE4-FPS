@@ -21,7 +21,13 @@ protected:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-public:	
+public:
+	UPROPERTY(EditDefaultsOnly, Category = "Spawn")
+	FVector MinExtent = FVector(0, -2000, 0);
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Spawn")
+	FVector MaxExtent = FVector(4000, 2000, 0);
+	
 	UFUNCTION(BlueprintCallable, Category = "Spawn")
 	void PlaceActors(const TSubclassOf<AActor> ClassToSpawn, const int32 MinSpawn, const int32 MaxSpawn, float Radius = 200, float MinScale = 1, float MaxScale = 1);
 

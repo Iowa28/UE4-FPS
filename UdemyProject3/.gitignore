@@ -79,5 +79,4 @@ DerivedDataCache/*
 /.idea/.idea.UdemyProject3/.idea/vcs.xml
 
 # large assets
-Content/IndustryPropsPack6
-Content/PN_GrassLibrary
+Content/Terrain/Ground/Textures

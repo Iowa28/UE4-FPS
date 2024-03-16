@@ -6,19 +6,28 @@
 UActorPool::UActorPool()
 {
 	PrimaryComponentTick.bCanEverTick = true;
+
+	Pool = TArray<AActor*>();
 }
 
 AActor* UActorPool::Checkout()
 {
-	return Actor;
+	UE_LOG(LogTemp, Warning, TEXT("Pool size: %d"), Pool.Num());
+	if (Pool.Num() == 0)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Actor pool is empty"));
+		return nullptr;
+	}
+	
+	return Pool.Pop();
 }
 
 void UActorPool::Return(AActor* ActorToReturn)
 {
-	Actor = ActorToReturn;
+	Add(ActorToReturn);
 }
 
 void UActorPool::Add(AActor* ActorToAdd)
 {
-	Return(ActorToAdd);
+	Pool.Push(ActorToAdd);
 }

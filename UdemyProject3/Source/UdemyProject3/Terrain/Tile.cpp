@@ -23,9 +23,7 @@ void ATile::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void ATile::PlaceActors(const TSubclassOf<AActor> ClassToSpawn, const int32 MinSpawn, const int32 MaxSpawn, const float Radius, float MinScale, float MaxScale)
 {
-	const FVector Min = FVector(0, -2000, 0);
-	const FVector Max = FVector(4000, 2000, 0);
-	const FBox Bounds = FBox(Min, Max);
+	const FBox Bounds = FBox(MinExtent, MaxExtent);
 
 	const int32 PointCount = FMath::RandRange(MinSpawn, MaxSpawn);
 	for (int32 i = 0; i < PointCount; i++)
@@ -50,7 +48,10 @@ void ATile::SetPool(UActorPool* ActorPool)
 void ATile::PositionNavMeshBoundsVolume()
 {
 	NavMeshBoundsVolume = Pool->Checkout();
-	NavMeshBoundsVolume->SetActorLocation(GetActorLocation());
+	if (NavMeshBoundsVolume)
+	{
+		NavMeshBoundsVolume->SetActorLocation(GetActorLocation());
+	}
 }
 
 bool ATile::FindEmptyLocation(FVector& OutLocation, const FBox& Bounds, const float Radius)

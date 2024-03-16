@@ -22,5 +22,5 @@ public:
 	void Add(AActor* ActorToAdd);
 
 private:
-	AActor* Actor = nullptr;
+	TArray<AActor*> Pool;
 };
