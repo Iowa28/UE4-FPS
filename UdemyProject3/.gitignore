@@ -78,5 +78,3 @@ DerivedDataCache/*
 /.idea/.idea.UdemyProject3/.idea/indexLayout.xml
 /.idea/.idea.UdemyProject3/.idea/vcs.xml
 
-# large assets
-Content/Terrain/Ground/Textures
