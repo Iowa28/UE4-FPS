@@ -6,6 +6,16 @@
 #include "GameFramework/Actor.h"
 #include "Tile.generated.h"
 
+USTRUCT()
+struct FSpawnPosition
+{
+	GENERATED_BODY()
+
+	FVector Location;
+	float Rotation;
+	float Scale;
+};
+
 class UActorPool;
 
 UCLASS()
@@ -44,9 +54,9 @@ private:
 
 	void PositionNavMeshBoundsVolume();
 	
-	bool FindEmptyLocation(FVector& OutLocation, const FBox& Bounds, float Radius);
+	bool FindEmptyLocation(FVector& OutLocation, float Radius);
 
-	void PlaceActor(TSubclassOf<AActor> ClassToSpawn, FVector SpawnPoint, float Angle, float Scale);
+	void PlaceActor(const TSubclassOf<AActor> ClassToSpawn, const FSpawnPosition& SpawnPosition);
 	
-	bool CanSpawnAtLocation(FVector Location, float Radius);
+	bool CanSpawnAtLocation(const FVector Location, float Radius);
 };

@@ -32,8 +32,4 @@ void UActorPool::Add(AActor* ActorToAdd)
 	{
 		Pool.Push(ActorToAdd);
 	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("Returning actor is null"));
-	}
 }
