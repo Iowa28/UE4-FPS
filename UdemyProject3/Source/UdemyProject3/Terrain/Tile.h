@@ -13,7 +13,7 @@ struct FSpawnPosition
 
 	FVector Location;
 	float Rotation;
-	float Scale;
+	float Scale = 1;
 };
 
 class UActorPool;
@@ -25,6 +25,15 @@ class UDEMYPROJECT3_API ATile : public AActor
 	
 public:	
 	ATile();
+
+	UFUNCTION(BlueprintCallable, Category = "Spawn")
+	void PlaceActors(const TSubclassOf<AActor> ClassToSpawn, const int32 MinSpawn, const int32 MaxSpawn, float Radius = 200, float MinScale = 1, float MaxScale = 1);
+
+	UFUNCTION(BlueprintCallable, Category = "Spawn")
+	void PlaceAIPawns(const TSubclassOf<APawn> ClassToSpawn, const int32 MinSpawn, const int32 MaxSpawn, float Radius = 200);
+
+	UFUNCTION(BlueprintCallable, Category = "Pool")
+	void SetPool(UActorPool* ActorPool);
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Navigation")
@@ -40,13 +49,6 @@ protected:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-public:
-	UFUNCTION(BlueprintCallable, Category = "Spawn")
-	void PlaceActors(const TSubclassOf<AActor> ClassToSpawn, const int32 MinSpawn, const int32 MaxSpawn, float Radius = 200, float MinScale = 1, float MaxScale = 1);
-
-	UFUNCTION(BlueprintCallable, Category = "Pool")
-	void SetPool(UActorPool* ActorPool);
-
 private:
 	UActorPool* Pool = nullptr;
 
@@ -57,6 +59,8 @@ private:
 	bool FindEmptyLocation(FVector& OutLocation, float Radius);
 
 	void PlaceActor(const TSubclassOf<AActor> ClassToSpawn, const FSpawnPosition& SpawnPosition);
+	
+	void PlaceAIPawn(const TSubclassOf<APawn> ClassToSpawn, const FSpawnPosition& SpawnPosition);
 	
 	bool CanSpawnAtLocation(const FVector Location, float Radius);
 };

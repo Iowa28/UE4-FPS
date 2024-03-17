@@ -38,6 +38,21 @@ void ATile::PlaceActors(const TSubclassOf<AActor> ClassToSpawn, const int32 MinS
 	}
 }
 
+void ATile::PlaceAIPawns(const TSubclassOf<APawn> ClassToSpawn, const int32 MinSpawn, const int32 MaxSpawn, float Radius)
+{
+	const int32 NumberToSpawn = FMath::RandRange(MinSpawn, MaxSpawn);
+	for (int32 i = 0; i < NumberToSpawn; i++)
+	{
+		FSpawnPosition SpawnPosition;
+		bool Found = FindEmptyLocation(SpawnPosition.Location, Radius);
+		if (Found)
+		{
+			SpawnPosition.Rotation = FMath::RandRange(-180.f, 180.f);
+			PlaceAIPawn(ClassToSpawn, SpawnPosition);
+		}
+	}
+}
+
 void ATile::SetPool(UActorPool* ActorPool)
 {
 	Pool = ActorPool;
@@ -79,6 +94,17 @@ void ATile::PlaceActor(const TSubclassOf<AActor> ClassToSpawn, const FSpawnPosit
 	SpawnedActor->SetActorRelativeRotation(FRotator(0, SpawnPosition.Rotation, 0));
 	SpawnedActor->SetActorRelativeScale3D(FVector(SpawnPosition.Scale));
 	SpawnedActor->AttachToActor(this, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
+}
+
+void ATile::PlaceAIPawn(const TSubclassOf<APawn> ClassToSpawn, const FSpawnPosition& SpawnPosition)
+{
+	FRotator Rotation = FRotator(0, SpawnPosition.Rotation, 0);
+	APawn* SpawnedPawn = GetWorld()->SpawnActor<APawn>(ClassToSpawn, SpawnPosition.Location, Rotation);
+	if (SpawnedPawn)
+	{
+		SpawnedPawn->AttachToActor(this, FAttachmentTransformRules(EAttachmentRule::KeepRelative, false));
+		SpawnedPawn->SpawnDefaultController();
+	}
 }
 
 bool ATile::CanSpawnAtLocation(const FVector Location, const float Radius)
