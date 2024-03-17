@@ -12,7 +12,6 @@ UActorPool::UActorPool()
 
 AActor* UActorPool::Checkout()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Pool size: %d"), Pool.Num());
 	if (Pool.Num() == 0)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Actor pool is empty"));
@@ -29,5 +28,12 @@ void UActorPool::Return(AActor* ActorToReturn)
 
 void UActorPool::Add(AActor* ActorToAdd)
 {
-	Pool.Push(ActorToAdd);
+	if (ActorToAdd)
+	{
+		Pool.Push(ActorToAdd);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Returning actor is null"));
+	}
 }

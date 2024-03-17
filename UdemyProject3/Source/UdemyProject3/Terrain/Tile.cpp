@@ -3,6 +3,7 @@
 
 #include "Tile.h"
 #include "UdemyProject3/ActorPool.h"
+#include "NavigationSystem.h"
 
 ATile::ATile()
 {
@@ -50,7 +51,8 @@ void ATile::PositionNavMeshBoundsVolume()
 	NavMeshBoundsVolume = Pool->Checkout();
 	if (NavMeshBoundsVolume)
 	{
-		NavMeshBoundsVolume->SetActorLocation(GetActorLocation());
+		NavMeshBoundsVolume->SetActorLocation(GetActorLocation() + NavigationBoundsOffset);
+		UNavigationSystemV1::GetCurrent(GetWorld())->Build();
 	}
 }
 

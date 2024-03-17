@@ -17,17 +17,20 @@ public:
 	ATile();
 
 protected:
-	virtual void BeginPlay() override;
-
-	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-
-public:
+	UPROPERTY(EditDefaultsOnly, Category = "Navigation")
+	FVector NavigationBoundsOffset= FVector(2000, 0, 0);
+	
 	UPROPERTY(EditDefaultsOnly, Category = "Spawn")
 	FVector MinExtent = FVector(0, -2000, 0);
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Spawn")
 	FVector MaxExtent = FVector(4000, 2000, 0);
 	
+	virtual void BeginPlay() override;
+
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
+public:
 	UFUNCTION(BlueprintCallable, Category = "Spawn")
 	void PlaceActors(const TSubclassOf<AActor> ClassToSpawn, const int32 MinSpawn, const int32 MaxSpawn, float Radius = 200, float MinScale = 1, float MaxScale = 1);
 
