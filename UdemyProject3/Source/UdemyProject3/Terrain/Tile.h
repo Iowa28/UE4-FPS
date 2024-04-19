@@ -58,9 +58,18 @@ private:
 	
 	bool FindEmptyLocation(FVector& OutLocation, float Radius);
 
-	void PlaceActor(const TSubclassOf<AActor> ClassToSpawn, const FSpawnPosition& SpawnPosition);
+	template<class T>
+	void PlaceActorsRandomly(const TSubclassOf<T> ClassToSpawn, const int32 MinSpawn = 1, const int32 MaxSpawn = 1, float Radius = 200, float MinScale = 1, float MaxScale = 1);
+
+	template<class T>
+	void PlaceActor(const TSubclassOf<T> ClassToSpawn, const FSpawnPosition& SpawnPosition);
 	
-	void PlaceAIPawn(const TSubclassOf<APawn> ClassToSpawn, const FSpawnPosition& SpawnPosition);
+	// void PlaceAIPawn(const TSubclassOf<APawn> ClassToSpawn, const FSpawnPosition& SpawnPosition);
+
+	// template<class T>
+	// void PlaceObject(const TSubclassOf<T> ClassToSpawn, const FSpawnPosition& SpawnPosition);
 	
 	bool CanSpawnAtLocation(const FVector Location, float Radius);
 };
+
+
